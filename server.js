@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 });
 
 // log all requests to the console
-app.user(morgan('dev'));
+app.use(morgan('dev'));
 
 // ROUTES
 // basic route for the home page
