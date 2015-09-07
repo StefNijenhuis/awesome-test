@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 8080;
+var User = require('./app/models/user');
 
 // APP CONFIGURATION
 // use body parser so information can be taken from POST requests
@@ -44,3 +45,6 @@ app.use('/api', apiRouter);
 // START THE SERVER
 app.listen(port);
 console.log('Magic happens on part' + port);
+
+// connect with database
+mongoose.connect('mongodb://localhost:27017/RESTfulAPI_DB');
