@@ -1,6 +1,9 @@
 var express = require('express'),
     app = express();
+var mongoose = require('mongoose');
 var path = require('path');
+
+mongoose.connect('mongodb://localhost/awesome_db');
 
 // app.get('/', function(req, res) {
 //   res.sendFile(path.join(__dirname + '/index.html'));
