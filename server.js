@@ -38,7 +38,7 @@ apiRouter.post('/authenticate', function(req, res) {
   // find user
   User.findOne({
     username: req.body.username
-  }).select('name username password').exec(funciton(err, user) {
+  }).select('name username password').exec(function(err, user) {
     if (err) throw err;
 
     // no user found
@@ -58,7 +58,7 @@ apiRouter.post('/authenticate', function(req, res) {
       } else {
         // if user is found ans password is correct
         // create token
-        var token = jwt/sign({
+        var token = jwt.sign({
           name: user.name,
           username: user.username
         }, superDuperSecret, {
@@ -66,7 +66,7 @@ apiRouter.post('/authenticate', function(req, res) {
         });
 
         // return the information including token as JSON
-        res.josn({
+        res.json({
           success: true,
           message: 'Enjoy your token!',
           token: token
@@ -78,14 +78,35 @@ apiRouter.post('/authenticate', function(req, res) {
 
 // MIDDLEWARE
 // for all requests
-apiRouter.get('/', function(req, res, next) {
-  console.log('Somebody just came to our app!');
+apiRouter.use('/', function(req, res, next) {
 
-  // more to come on chapter 10
-  // this is where we will authenticate users
+  //check header url or post for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
-  next();
-})
+  //decode token
+  if (token) {
+    // verify secret
+    jwt.verify(token, superDuperSecret, function(err, decoded) {
+      if (err) {
+        return res.status(403).send({
+          success: false,
+          message: 'Failed to authenticate token.'
+        });
+      } else {
+        // if everything is good save to request for use in other routes
+        req.decoded =decoded;
+        next();
+      }
+    });
+  } else {
+    // in case of no token
+    // return HTTP response 403 (access forbidden) and an error message
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+  }
+});
 
 // test route to make sure everything is working
 // accessed at GET http://localhost:8080/api
@@ -179,6 +200,11 @@ apiRouter.route('/users/:user_id')
       res.json({ message: 'Successfully deleted! '});
     });
   });
+
+// api endpoint to get user information
+apiRouter.get('/me', function(req, res) {
+  res.send(req.decoded);
+});
 
 // START THE SERVER
 app.listen(port);
