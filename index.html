@@ -55,5 +55,15 @@
     </tbody>
   </table>
 
+  <!-- form to add computer to the list -->
+  <form class="form-inline" ng-submit="main.addComputer()">
+    <input type="text" class="form-control" placeholder="Macbook" ng-model="main.computerData.name">
+    <input type="text" class="form-control" placeholder="Silver" ng-model="main.computerData.colour">
+    <input type="number" class="form-control" placeholder="8" ng-model="main.computerData.nerdness">
+    <input type="number" class="form-control" placeholder="10" ng-model="main.computerData.lameness">
+
+    <button type="submit" class="btn btn-success">add</button>
+  </form>
+
 </body>
 </html>
