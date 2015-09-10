@@ -1,4 +1,4 @@
-angular.module('routerApp', [])
+angular.module('routerApp', ['routerRoutes'])
 
   // create the controllers
   // this will be the controller for the ENTIRE site

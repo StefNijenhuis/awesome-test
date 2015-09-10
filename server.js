@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-app.user(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/vies/index.html'));
+  res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
 app.listen(8080);
