@@ -1,4 +1,5 @@
 // CALL THE PACKAGES
+var config = require('./config')
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -7,7 +8,13 @@ var mongoose = require('mongoose');
 var port = process.env.PORT || 8080;
 var User = require('./app/models/user');
 var jwt = require('jsonwebtoken');
-var superDuperSecret = 'youwillneverguessthissecret';
+
+// START THE SERVER
+app.listen(port);
+console.log('Magic happens on port ' + config.port);
+
+// connect with database
+mongoose.connect(config.database);
 
 // APP CONFIGURATION
 // use body parser so information can be taken from POST requests
@@ -205,10 +212,3 @@ apiRouter.route('/users/:user_id')
 apiRouter.get('/me', function(req, res) {
   res.send(req.decoded);
 });
-
-// START THE SERVER
-app.listen(port);
-console.log('Magic happens on port ' + port);
-
-// connect with database
-mongoose.connect('mongodb://localhost:27017/RESTfulAPI_DB');
