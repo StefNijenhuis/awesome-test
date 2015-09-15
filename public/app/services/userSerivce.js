@@ -12,5 +12,4 @@ angular.module('stuffService', [])
 
   return myFactory;
 
-
 });
