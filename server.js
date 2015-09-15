@@ -45,21 +45,8 @@ app.get('*', function(req, res) {
 app.listen(config.port);
 console.log('Magic happens on port ' + config.port);
 
-
-
-
-
-
-
-
-
 // ROUTES
 // basic route for the home page
 app.get('/', function(req, res) {
   res.send('Welcome to the home page!');
 })
-
-// // api endpoint to get user information
-// apiRouter.get('/me', function(req, res) {
-//   res.send(req.decoded);
-// });
