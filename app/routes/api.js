@@ -23,7 +23,7 @@ module.exports = function(app, express) {
 
       // no user with that username was found
       if (!user) {
-        res.join({
+        res.json({
           success: false,
           message: 'Authentication failed. Wrong password.'
         });
@@ -36,7 +36,7 @@ module.exports = function(app, express) {
         });
 
         // return the information including token as JSON
-        res.join({
+        res.json({
           success: true,
           message: 'Enjoy your token!',
           token: token
