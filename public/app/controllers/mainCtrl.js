@@ -35,6 +35,7 @@ angular.module('mainCtrl', [])
     Auth.logout();
 
     // reset all user info
+    vm.user = {};
     $location.path('/login');
   }
 
