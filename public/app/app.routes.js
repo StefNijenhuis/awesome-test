@@ -1,4 +1,4 @@
-angular.module('app.rouyes', [ngRoute])
+angular.module('app.routes', [ngRoute])
 
 .config(function($routeProvider, $locationProvider) {
 
