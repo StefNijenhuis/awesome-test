@@ -17,7 +17,7 @@ angular.module('authService', [])
       password: password
     })
       .success(function(data) {
-        authToken.setToken(data.token);
+        AuthToken.setToken(data.token);
         return data;
       });
   };
@@ -25,7 +25,7 @@ angular.module('authService', [])
   // log a user out by clearing the token
   authFactory.logout = function() {
     // clear the token
-    authToken.setToken();
+    AuthToken.setToken();
   };
 
   // check if user is logged in
@@ -39,7 +39,7 @@ angular.module('authService', [])
 
   // get the logged in user
   authFactory.getUser = function() {
-    if (authToken.getToken())
+    if (AuthToken.getToken())
       return $http.get('/api/me', { cache: true });
     else
       return $q.reject({ message: 'User has no token. '});
@@ -86,7 +86,7 @@ angular.module('authService', [])
   authInterceptorFactory.request = function(config) {
 
     // grab the token
-    var token = authToken.getToken();
+    var token = AuthToken.getToken();
 
     // if the token exists, add it to the header as x-access-token
     if (token)

@@ -1,4 +1,4 @@
-angular.module('userCtrl', [userService])
+angular.module('userCtrl', ['userService'])
 
   .controller('userController', function(User) {
 
