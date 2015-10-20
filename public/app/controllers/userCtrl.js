@@ -39,4 +39,4 @@ angular.module('userCtrl', ['userService'])
         });
     };
 
-  });
+  })

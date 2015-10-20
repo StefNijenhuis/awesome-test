@@ -11,8 +11,8 @@ angular.module('userService', [])
   };
 
   // get all users
-  userFactory.all =function() {
-    return $http.get('/api/users/');
+  userFactory.all = function() {
+    return $http.get('/api/users/')
   };
 
   // create a user
