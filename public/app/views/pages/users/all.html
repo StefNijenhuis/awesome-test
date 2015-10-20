@@ -26,12 +26,14 @@
   <tbody>
 
     <!-- LOOP OVER THE USERS -->
-    <tr ng-repeat="person in user.users">
+    <!-- <tr ng-repeat="person in user.users"> -->
+    <tr ng-repeat="person in user.users track by $index">
       <td>{{ person._id }}</td>
       <td>{{ person.name }}</td>
       <td>{{ person.username }}</td>
       <td class="col-sm-2">
-        <a ng-href="/users/{{ person._id }}" class="btn btn-danger"> Edit</a>
+        <a ng-href="/users/{{ person._id }}" class="btn btn-danger">Edit</a>
+        <a href="#" ng-click="user.deleteUser(person._id)"class="btn btn-primary">Delete</a>
       </td>
     </tr>
   </tbody>

@@ -51,7 +51,7 @@ module.exports = function(app, express) {
     console.log('Somebody just came to our app!');
 
     // check header or url or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-acess-token'];
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     // decode token
     if (token) {
@@ -63,7 +63,6 @@ module.exports = function(app, express) {
         } else {
           // if everythign is good, save to request for use in other routes
           req.decoded = decoded;
-
           next(); // make sure we go to the next routes and don't stop here
         }
       });
