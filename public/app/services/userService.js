@@ -2,7 +2,7 @@ angular.module('userService', [])
 
 .factory('User', function($http) {
 
-  // create the object
+  // create a new object
   var userFactory = {};
 
   // get a single user
@@ -12,7 +12,7 @@ angular.module('userService', [])
 
   // get all users
   userFactory.all = function() {
-    return $http.get('/api/users/')
+    return $http.get('/api/users/');
   };
 
   // create a user
@@ -26,11 +26,11 @@ angular.module('userService', [])
   };
 
   // delete a user
-  userFactory.delete =  function(id) {
-    return $http.delete('/api/users' + id);
+  userFactory.delete = function(id) {
+    return $http.delete('/api/users/' + id);
   };
 
-  // returb our entire userFactory object
+  // return our entire userFactory object
   return userFactory;
 
 });

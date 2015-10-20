@@ -100,7 +100,17 @@ module.exports = function(app, express) {
         // return a message
         res.json({ message: 'User created!' });
       });
-    });
+    })
+
+    // get all the users (accessed at GET http://localhost:8080/api/users)
+    .get(function(req, res) {
+      User.find(function(err, users) {
+        if(err) res.send(err);
+
+        // return the users
+        res.json(users);
+      })
+    })
 
   // on routes that end in /users/:user_id
   apiRouter.route('/users/:user_id')
